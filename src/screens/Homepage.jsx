@@ -5,6 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import { makeStyles } from "@material-ui/core/styles";
 
+import Roll from "react-reveal/Roll";
+
 const useStyles = makeStyles((theme) => ({
   screen: {
     height: "100vh",
@@ -57,28 +59,30 @@ function Homepage() {
   const classes = useStyles();
   return (
     <div className={classes.screen}>
-      <div className={classes.content}>
-        <WhatshotIcon className={classes.logo} />
-        <Typography className={classes.logoText} variant="h2">
-          OpenInder
-        </Typography>
-        <Button
-          className={classes.signIn}
-          variant="contained"
-          color="primary"
-          href="/signin"
-        >
-          Sign in to OpenInder
-        </Button>
-        <Button
-          className={classes.signUp}
-          variant="contained"
-          color="secondary"
-          href="signup"
-        >
-          Sign up to OpenInder
-        </Button>
-      </div>
+      <Roll>
+        <div className={classes.content}>
+          <WhatshotIcon className={classes.logo} />
+          <Typography className={classes.logoText} variant="h2">
+            OpenInder
+          </Typography>
+          <Button
+            className={classes.signIn}
+            variant="contained"
+            color="primary"
+            href="/signin"
+          >
+            Sign in to OpenInder
+          </Button>
+          <Button
+            className={classes.signUp}
+            variant="contained"
+            color="secondary"
+            href="signup"
+          >
+            Sign up to OpenInder
+          </Button>
+        </div>
+      </Roll>
     </div>
   );
 }
