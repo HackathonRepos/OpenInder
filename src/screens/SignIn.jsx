@@ -50,7 +50,7 @@ function SignIn() {
           .get()
           .then((doc) => {
             if (!doc.exists) {
-              // put initial data
+              docRef.set({"disliked_projects":[], "favorite_projects":[], "working_on":[]})
             }
             history.push("/authenticated/dashboard");
           })

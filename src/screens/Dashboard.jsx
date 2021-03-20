@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 
 import Project from "../components/Project";
+import firebase from "firebase";
 
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -124,6 +125,25 @@ const useStyles = makeStyles((theme) => ({
 
 // Dashboard = main page where users can see the projects they're involved in
 function Dashboard() {
+  const user_id = firebase.auth().currentUser.uid
+  const docRef = firebase.firestore().collection("users").doc(user_id);
+
+  var projects = {"disliked_projects":[], "favorite_projects":[], "working_on":[]}
+  docRef.get().then((doc) => {
+    if (doc.exists) {
+        projects = doc.data()
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+  }).catch((error) => {
+    console.log("Error getting document:", error);
+  });
+
+  console.log(projects);
+
+
+  console.log(user_id)
   const classes = useStyles(); // Imports prementioned CSS
   const [open, setOpen] = React.useState(true);
   

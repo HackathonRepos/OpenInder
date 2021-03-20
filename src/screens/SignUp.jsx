@@ -44,11 +44,9 @@ function SignUp() {
       .then((result) => {
         const user = result.user;
         const docRef = firebase.firestore().collection("users").doc(user.uid);
-        docRef
-          .get()
-          .then((doc) => {
+        docRef.get().then((doc) => {
             if (!doc.exists) {
-              // put initial data
+              docRef.set({"disliked_projects":[], "favorite_projects":[], "working_on":[]})
             }
             history.push("/authenticated/dashboard");
           })
