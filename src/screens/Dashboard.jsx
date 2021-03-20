@@ -34,6 +34,7 @@ function Copyright() {
 
 const drawerWidth = 240;
 
+// Use SAAS to set up inline CSS for dashboard 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -113,17 +114,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Dashboard = main page where users can see the projects they're involved in
 function Dashboard() {
-  const classes = useStyles();
+  const classes = useStyles(); // Imports prementioned CSS
   const [open, setOpen] = React.useState(true);
+  
+  // Handlers for menu drawer
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  // Return the main dashboard (React)
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -160,6 +166,7 @@ function Dashboard() {
           </IconButton>
         </Toolbar>
       </AppBar>
+      {/* Puts the drawer in the side of the dashboard */}
       <Drawer
         variant="permanent"
         classes={{

@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import firebase from "firebase";
 dotenv.config();
 
+// API Keys within an ENV file (to prevent security leaks)
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -10,6 +11,7 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_API_KEY_MESSAGE_ID,
   appId: process.env.REACT_APP_FIREBASE_API_KEY_APP_ID,
 };
+
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }

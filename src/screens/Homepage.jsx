@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Roll from "react-reveal/Roll";
 
+// Homepage = Page seen upon opening the app for the first time
 function Homepage() {
   const classes = useStyles();
   return (
@@ -17,6 +18,7 @@ function Homepage() {
           <Typography className={classes.logoText} variant="h2">
             OpenInder
           </Typography>
+          {/* Buttons to sign up and log in */}
           <Button
             className={classes.signIn}
             variant="contained"
@@ -39,6 +41,7 @@ function Homepage() {
   );
 }
 
+// Inline CSS
 const useStyles = makeStyles((theme) => ({
   screen: {
     height: "100vh",

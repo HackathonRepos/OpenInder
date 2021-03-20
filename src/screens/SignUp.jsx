@@ -35,6 +35,7 @@ function Copyright() {
 function SignUp() {
   const classes = useStyles();
   const history = useHistory();
+  // FireBase Auth to create an account
   const registerInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase
@@ -100,6 +101,7 @@ function SignUp() {
   );
 }
 
+// Inline CSS
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",

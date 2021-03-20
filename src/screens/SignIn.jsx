@@ -32,9 +32,12 @@ function Copyright() {
   );
 }
 
+// Authenticates the user
 function SignIn() {
   const classes = useStyles();
   const history = useHistory();
+
+  // Firebase-based email auth
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase
@@ -81,6 +84,7 @@ function SignIn() {
               onClick={signInWithGoogle}
               type="dark"
             />
+            {/* Option to create an account from sign-in page (redirects to sign-up) */}
             <form className={classes.form} noValidate>
               <Grid container>
                 <Grid item>
