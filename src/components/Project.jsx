@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import Delete from "@material-ui/icons/Delete";
 
 
 
@@ -21,6 +22,11 @@ function Project(proj_id, proj_name) {
         // window.location="../../projects/"+proj_id.proj_id
         console.log("Project Page!")
     }
+
+    function deleteProject() {
+        // Method Stub
+        console.log("Delete!");
+    } 
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -45,9 +51,17 @@ function Project(proj_id, proj_name) {
     return (
         <div className={classes.root} onClick={()=>{clickProject()}}>
             <div>
-                {proj_id.proj_name}
+                <div className={classes.column}>
+                    {proj_id.proj_name}                
+                </div>
+                <div className={classes.column} style={{"text-align": "right"}}>
+                    <Delete onClick={(event) => {
+                        deleteProject();
+                        event.stopPropagation(); //Prevents div onClick from triggering
+                        }}/>
+                </div>
             </div>
-            <br/>
+
             <div>
                 <div className={classes.column}>
                     <ChevronLeftIcon onClick={(event) => {
