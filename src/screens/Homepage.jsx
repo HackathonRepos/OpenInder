@@ -59,8 +59,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "70px",
     borderRadius: "10%",
     borderTop: "10px solid #a95962",
-    boxShadow:
-      "box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
+    boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
   },
   logo: { color: "#4C3B39", width: "50px", height: "50px" },
   logoText: {
@@ -75,8 +74,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#979491",
     "&:hover": {
       backgroundColor: "#716e6b",
-      boxShadow:
-        "box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
+      boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
     },
   },
   signUp: {
@@ -84,8 +82,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#C79399",
     "&:hover": {
       backgroundColor: "#a95962",
-      boxShadow:
-        "box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
+      boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
     },
   },
 }));
