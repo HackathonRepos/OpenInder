@@ -38,7 +38,7 @@ function Copyright() {
 
 const drawerWidth = 240;
 
-// Use SAAS to set up inline CSS for dashboard 
+// Use SAAS to set up inline CSS for dashboard
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -117,36 +117,41 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
   header: {
-    "font-weight": "bold", 
+    "font-weight": "bold",
     "align-self": "center",
-    "margin":"10px",
-  }, 
+    margin: "10px",
+  },
 }));
 
 // Dashboard = main page where users can see the projects they're involved in
 function Dashboard() {
-  const user_id = firebase.auth().currentUser.uid
+  const user_id = firebase.auth().currentUser.uid;
   const docRef = firebase.firestore().collection("users").doc(user_id);
 
-  var projects = {"disliked_projects":[], "favorite_projects":[], "working_on":[]}
-  docRef.get().then((doc) => {
-    if (doc.exists) {
-        projects = doc.data()
-    } else {
+  var projects = {
+    disliked_projects: [],
+    favorite_projects: [],
+    working_on: [],
+  };
+  docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        projects = doc.data();
+      } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
-    }
-  }).catch((error) => {
-    console.log("Error getting document:", error);
-  });
-
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
   console.log(projects);
+  console.log(user_id);
 
-
-  console.log(user_id)
   const classes = useStyles(); // Imports prementioned CSS
   const [open, setOpen] = React.useState(true);
-  
+
   // Handlers for menu drawer
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -208,7 +213,7 @@ function Dashboard() {
           </IconButton>
         </div>
         <Link color="#757C7D" href="./find">
-        Find
+          Find
         </Link>{" "}
       </Drawer>
       <main className={classes.content}>
@@ -218,25 +223,37 @@ function Dashboard() {
             {/* Chart */}
             <Grid item xs={12} md={4} lg={4}>
               <Paper className={fixedHeightPaper}>
-                <header className={classes.header}> Projects I'm Working On </header>
-                <Project className="project" proj_id="project_id" proj_name="project_name"/>
+                <header className={classes.header}>
+                  {" "}
+                  Projects I'm Working On{" "}
+                </header>
+                <Project
+                  className="project"
+                  proj_id="project_id"
+                  proj_name="project_name"
+                />
                 {/* <Project className="project" proj_id="project_id" proj_name="project_name"/>
                 <Project className="project" proj_id="project_id" proj_name="project_name"/>
                 <Project className="project" proj_id="project_id" proj_name="project_name"/>
                 <Project className="project" proj_id="project_id" proj_name="project_name"/>
                 <Project className="project" proj_id="project_id" proj_name="project_name"/> */}
               </Paper>
-                
             </Grid>
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={4}>
               <Paper className={fixedHeightPaper}>
-                <header className={classes.header}> Projects I'm Interested In </header>
+                <header className={classes.header}>
+                  {" "}
+                  Projects I'm Interested In{" "}
+                </header>
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={4}>
               <Paper className={fixedHeightPaper}>
-                <header className={classes.header}> Projects I Turned Down </header>
+                <header className={classes.header}>
+                  {" "}
+                  Projects I Turned Down{" "}
+                </header>
               </Paper>
             </Grid>
             {/* Recent Orders */}
