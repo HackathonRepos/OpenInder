@@ -1,5 +1,9 @@
 import React from "react";
 import clsx from "clsx";
+
+import Project from "../components/Project";
+import firebase from "firebase";
+
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
@@ -34,7 +38,7 @@ function Copyright() {
 
 const drawerWidth = 240;
 
-// Use SAAS to set up inline CSS for dashboard 
+// Use SAAS to set up inline CSS for dashboard
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -112,13 +116,42 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  header: {
+    "font-weight": "bold",
+    "align-self": "center",
+    margin: "10px",
+  },
 }));
 
 // Dashboard = main page where users can see the projects they're involved in
 function Dashboard() {
+  const user_id = firebase.auth().currentUser.uid;
+  const docRef = firebase.firestore().collection("users").doc(user_id);
+
+  var projects = {
+    disliked_projects: [],
+    favorite_projects: [],
+    working_on: [],
+  };
+  docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        projects = doc.data();
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+  console.log(projects);
+  console.log(user_id);
+
   const classes = useStyles(); // Imports prementioned CSS
   const [open, setOpen] = React.useState(true);
-  
+
   // Handlers for menu drawer
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -168,7 +201,7 @@ function Dashboard() {
       </AppBar>
       {/* Puts the drawer in the side of the dashboard */}
       <Drawer
-        variant="permanent"
+        variant="temporary"
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
         }}
@@ -179,18 +212,49 @@ function Dashboard() {
             <ChevronLeftIcon />
           </IconButton>
         </div>
+        <Link color="#757C7D" href="./find">
+          Find
+        </Link>{" "}
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}></Paper>
+            <Grid item xs={12} md={4} lg={4}>
+              <Paper className={fixedHeightPaper}>
+                <header className={classes.header}>
+                  {" "}
+                  Projects I'm Working On{" "}
+                </header>
+                <Project
+                  className="project"
+                  proj_id="project_id"
+                  proj_name="project_name"
+                />
+                {/* <Project className="project" proj_id="project_id" proj_name="project_name"/>
+                <Project className="project" proj_id="project_id" proj_name="project_name"/>
+                <Project className="project" proj_id="project_id" proj_name="project_name"/>
+                <Project className="project" proj_id="project_id" proj_name="project_name"/>
+                <Project className="project" proj_id="project_id" proj_name="project_name"/> */}
+              </Paper>
             </Grid>
             {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}></Paper>
+            <Grid item xs={12} md={4} lg={4}>
+              <Paper className={fixedHeightPaper}>
+                <header className={classes.header}>
+                  {" "}
+                  Projects I'm Interested In{" "}
+                </header>
+              </Paper>
+            </Grid>
+            <Grid item xs={12} md={4} lg={4}>
+              <Paper className={fixedHeightPaper}>
+                <header className={classes.header}>
+                  {" "}
+                  Projects I Turned Down{" "}
+                </header>
+              </Paper>
             </Grid>
             {/* Recent Orders */}
             <Grid item xs={12}>

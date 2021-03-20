@@ -9,31 +9,35 @@ import SignUp from "./screens/SignUp";
 import Dashboard from "./screens/Dashboard";
 import Find from "./screens/Find";
 
-import { auth } from "./firebase";
+import firebase from "firebase";
 
 function App() {
+  // listens to the state changes and determines if there is a logged in user
+  const isLoggedIn = () => {
+    firebase.auth().onAuthStateChanged(function (user) {
+      console.log(user);
+      return user ? true : false;
+    });
+  };
+  isLoggedIn();
   return (
     // Routes (1 for each page we'll have in the website)
     <Switch>
       <Route path="/" component={Homepage} exact />
       <Route path="/signin" component={SignIn} exact />
       <Route path="/signup" component={SignUp} exact />
-      {/* <Route 
+      <Route
         path={"/authenticated/dashboard"}
         // Check if the path is authenticated (i.e. user logged in), else redirect them to signin page
-        render={() =>
-          auth.currentUser ? <Dashboard /> : <Redirect to="/signin" />
-        }
+        render={() => (isLoggedIn ? <Dashboard /> : <Redirect to="/signin" />)}
         exact
       />
       <Route
         path={"/authenticated/find"}
         // Check if the path is authenticated (i.e. user logged in), else redirect them to signin page
-        render={() => (auth.currentUser ? <Find /> : <Redirect to="/signin" />)}
+        render={() => (isLoggedIn ? <Find /> : <Redirect to="/signin" />)}
         exact
-      /> */}
-      <Route path="/authenticated/dashboard" component={Dashboard} exact />
-      <Route path="/authenticated/find" component={Find} exact />
+      />
     </Switch>
   );
 }
