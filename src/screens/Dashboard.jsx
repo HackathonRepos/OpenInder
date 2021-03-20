@@ -118,6 +118,7 @@ const useStyles = makeStyles((theme) => ({
   header: {
     "font-weight": "bold", 
     "align-self": "center",
+    "margin":"10px",
   }, 
 }));
 
@@ -197,18 +198,25 @@ function Dashboard() {
             {/* Chart */}
             <Grid item xs={12} md={4} lg={4}>
               <Paper className={fixedHeightPaper}>
-                <header className={classes.header}> My Projects </header>
-                <Project proj_id="project_id" proj_name="project_name"/></Paper>
+                <header className={classes.header}> Projects I'm Working On </header>
+                <Project className="project" proj_id="project_id" proj_name="project_name"/>
+                <Project className="project" proj_id="project_id" proj_name="project_name"/>
+                <Project className="project" proj_id="project_id" proj_name="project_name"/>
+                <Project className="project" proj_id="project_id" proj_name="project_name"/>
+                <Project className="project" proj_id="project_id" proj_name="project_name"/>
+                <Project className="project" proj_id="project_id" proj_name="project_name"/>
+              </Paper>
+                
             </Grid>
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={4}>
               <Paper className={fixedHeightPaper}>
-                <header className={classes.header}> My Projects </header>
+                <header className={classes.header}> Projects I'm Interested In </header>
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={4}>
               <Paper className={fixedHeightPaper}>
-                <header className={classes.header}> My Projects </header>
+                <header className={classes.header}> Projects I Turned Down </header>
               </Paper>
             </Grid>
             {/* Recent Orders */}

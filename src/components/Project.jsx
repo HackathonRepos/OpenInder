@@ -13,6 +13,7 @@ function Project(proj_id, proj_name) {
             "border-radius": "4px",
             "min-height": "25px",
             "line-height": "25px", //Quick hack to vertically center text
+            "margin-top":"10px",
           }        
     }));
       
