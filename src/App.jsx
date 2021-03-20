@@ -18,7 +18,7 @@ function App() {
       <Route path="/" component={Homepage} exact />
       <Route path="/signin" component={SignIn} exact />
       <Route path="/signup" component={SignUp} exact />
-      {/* <Route 
+      <Route
         path={"/authenticated/dashboard"}
         // Check if the path is authenticated (i.e. user logged in), else redirect them to signin page
         render={() =>
@@ -31,9 +31,7 @@ function App() {
         // Check if the path is authenticated (i.e. user logged in), else redirect them to signin page
         render={() => (auth.currentUser ? <Find /> : <Redirect to="/signin" />)}
         exact
-      /> */}
-      <Route path="/authenticated/dashboard" component={Dashboard} exact />
-      <Route path="/authenticated/find" component={Find} exact />
+      />
     </Switch>
   );
 }
