@@ -7,6 +7,38 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Roll from "react-reveal/Roll";
 
+function Homepage() {
+  const classes = useStyles();
+  return (
+    <div className={classes.screen}>
+      <Roll>
+        <div className={classes.content}>
+          <WhatshotIcon className={classes.logo} />
+          <Typography className={classes.logoText} variant="h2">
+            OpenInder
+          </Typography>
+          <Button
+            className={classes.signIn}
+            variant="contained"
+            color="primary"
+            href="/signin"
+          >
+            Sign in to OpenInder
+          </Button>
+          <Button
+            className={classes.signUp}
+            variant="contained"
+            color="secondary"
+            href="signup"
+          >
+            Sign up to OpenInder
+          </Button>
+        </div>
+      </Roll>
+    </div>
+  );
+}
+
 const useStyles = makeStyles((theme) => ({
   screen: {
     height: "100vh",
@@ -54,37 +86,5 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-function Homepage() {
-  const classes = useStyles();
-  return (
-    <div className={classes.screen}>
-      <Roll>
-        <div className={classes.content}>
-          <WhatshotIcon className={classes.logo} />
-          <Typography className={classes.logoText} variant="h2">
-            OpenInder
-          </Typography>
-          <Button
-            className={classes.signIn}
-            variant="contained"
-            color="primary"
-            href="/signin"
-          >
-            Sign in to OpenInder
-          </Button>
-          <Button
-            className={classes.signUp}
-            variant="contained"
-            color="secondary"
-            href="signup"
-          >
-            Sign up to OpenInder
-          </Button>
-        </div>
-      </Roll>
-    </div>
-  );
-}
 
 export default Homepage;

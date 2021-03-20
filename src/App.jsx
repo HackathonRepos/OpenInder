@@ -17,7 +17,7 @@ function App() {
       <Route path="/" component={Homepage} exact />
       <Route path="/signin" component={SignIn} exact />
       <Route path="/signup" component={SignUp} exact />
-      {/* <Route
+      <Route
         path={"/authenticated/dashboard"}
         render={() =>
           auth.currentUser ? <Dashboard /> : <Redirect to="/signin" />
@@ -28,9 +28,7 @@ function App() {
         path={"/authenticated/find"}
         render={() => (auth.currentUser ? <Find /> : <Redirect to="/signin" />)}
         exact
-      /> */}
-      <Route path="/authenticated/dashboard" component={Dashboard} exact />
-      <Route path="/authenticated/find" component={Find} exact />
+      />
     </Switch>
   );
 }
