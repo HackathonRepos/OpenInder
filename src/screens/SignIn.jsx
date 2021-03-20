@@ -11,6 +11,9 @@ import Fade from "react-reveal/Fade";
 import GoogleButton from "react-google-button";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 
+import firebase from "firebase";
+import { useHistory } from "react-router";
+
 function Copyright() {
   return (
     <Typography
@@ -31,7 +34,33 @@ function Copyright() {
 
 function SignIn() {
   const classes = useStyles();
-
+  const history = useHistory();
+  const signInWithGoogle = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        const user = result.user;
+        const docRef = firebase.firestore().collection("users").doc(user.uid);
+        docRef
+          .get()
+          .then((doc) => {
+            if (!doc.exists) {
+              // put initial data
+            }
+            history.push("/authenticated/dashboard");
+          })
+          .catch((err) => {
+            console.log(err);
+            history.push("/");
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+        history.push("/");
+      });
+  };
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -47,7 +76,11 @@ function SignIn() {
             <Typography component="h1" variant="h4">
               Sign Into OpenInder
             </Typography>
-            <GoogleButton className={classes.google} type="dark" />
+            <GoogleButton
+              className={classes.google}
+              onClick={signInWithGoogle}
+              type="dark"
+            />
             <form className={classes.form} noValidate>
               <Grid container>
                 <Grid item>
