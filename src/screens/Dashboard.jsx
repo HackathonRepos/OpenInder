@@ -200,11 +200,11 @@ function Dashboard() {
               <Paper className={fixedHeightPaper}>
                 <header className={classes.header}> Projects I'm Working On </header>
                 <Project className="project" proj_id="project_id" proj_name="project_name"/>
+                {/* <Project className="project" proj_id="project_id" proj_name="project_name"/>
                 <Project className="project" proj_id="project_id" proj_name="project_name"/>
                 <Project className="project" proj_id="project_id" proj_name="project_name"/>
                 <Project className="project" proj_id="project_id" proj_name="project_name"/>
-                <Project className="project" proj_id="project_id" proj_name="project_name"/>
-                <Project className="project" proj_id="project_id" proj_name="project_name"/>
+                <Project className="project" proj_id="project_id" proj_name="project_name"/> */}
               </Paper>
                 
             </Grid>
