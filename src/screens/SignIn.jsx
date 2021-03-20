@@ -39,30 +39,28 @@ function SignIn() {
 
   // Firebase-based email auth
   const signInWithGoogle = () => {
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then((result) => {
+    firebase.auth().signInWithPopup(provider).then((result) => {
         const user = result.user;
         const docRef = firebase.firestore().collection("users").doc(user.uid);
-        docRef
-          .get()
-          .then((doc) => {
+        docRef.get().then((doc) => {
             if (!doc.exists) {
-              // put initial data
+              docRef.set({"disliked_projects":[], "favorite_projects":[], "working_on":[]})
             }
             history.push("/authenticated/dashboard");
-          })
-          .catch((err) => {
+          }).catch((err) => {
             console.log(err);
             history.push("/");
           });
-      })
-      .catch((error) => {
+      }).catch((error) => {
         console.log(error);
         history.push("/");
       });
+    }).catch((error) => {
+      console.log(error);
+      history.push("/");
+    });
   };
   return (
     <Grid container component="main" className={classes.root}>
