@@ -1,5 +1,8 @@
 import React from "react";
 import clsx from "clsx";
+
+import Project from "../components/Project";
+
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
@@ -112,6 +115,10 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  header: {
+    "font-weight": "bold", 
+    "align-self": "center",
+  }, 
 }));
 
 // Dashboard = main page where users can see the projects they're involved in
@@ -168,7 +175,7 @@ function Dashboard() {
       </AppBar>
       {/* Puts the drawer in the side of the dashboard */}
       <Drawer
-        variant="permanent"
+        variant="temporary"
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
         }}
@@ -179,18 +186,30 @@ function Dashboard() {
             <ChevronLeftIcon />
           </IconButton>
         </div>
+        <Link color="#757C7D" href="./find">
+        Find
+        </Link>{" "}
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}></Paper>
+            <Grid item xs={12} md={4} lg={4}>
+              <Paper className={fixedHeightPaper}>
+                <header className={classes.header}> My Projects </header>
+                <Project proj_id="project_id" proj_name="project_name"/></Paper>
             </Grid>
             {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}></Paper>
+            <Grid item xs={12} md={4} lg={4}>
+              <Paper className={fixedHeightPaper}>
+                <header className={classes.header}> My Projects </header>
+              </Paper>
+            </Grid>
+            <Grid item xs={12} md={4} lg={4}>
+              <Paper className={fixedHeightPaper}>
+                <header className={classes.header}> My Projects </header>
+              </Paper>
             </Grid>
             {/* Recent Orders */}
             <Grid item xs={12}>
