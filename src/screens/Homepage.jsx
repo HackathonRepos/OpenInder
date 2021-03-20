@@ -1,9 +1,9 @@
 import React from "react";
 
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   screen: {
@@ -19,15 +19,32 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#F9F8F8",
-    padding: "50px",
+    padding: "70px",
     borderRadius: "10%",
+    borderTop: "10px solid #a95962",
     boxShadow:
       "box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
   },
   logo: { color: "#4C3B39", width: "50px", height: "50px" },
   logoText: { color: "#4C3B39", marginBottom: "50px" },
-  signIn: { marginBottom: "10px", backgroundColor: "#C79399" },
-  signUp: { marginTop: "10px" },
+  signIn: {
+    marginBottom: "10px",
+    backgroundColor: "#979491",
+    "&:hover": {
+      backgroundColor: "#716e6b",
+      boxShadow:
+        "box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
+    },
+  },
+  signUp: {
+    marginTop: "10px",
+    backgroundColor: "#C79399",
+    "&:hover": {
+      backgroundColor: "#a95962",
+      boxShadow:
+        "box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
+    },
+  },
 });
 
 function Homepage() {
