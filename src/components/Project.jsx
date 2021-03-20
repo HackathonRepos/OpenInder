@@ -1,14 +1,31 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 
 
 function Project(proj_id, proj_name) {
+    function moveLeft() {
+        // Method Stub
+        console.log("Left!")
+    }
+
+    function moveRight() {
+        // Method Stub
+        console.log("Right!")
+    }
+    
+    function clickProject() {
+        // COMMENTED FOR DEBUGGING PURPOSES
+        // window.location="../../projects/"+proj_id.proj_id
+        console.log("Project Page!")
+    }
 
     const useStyles = makeStyles((theme) => ({
         root: {
             "display": "flex",
-            "flex-direction": "row",
+            "flex-direction": "column",
             "flex-wrap": "wrap",
             "width": "100%",          
             "cursor":"pointer", 
@@ -26,17 +43,25 @@ function Project(proj_id, proj_name) {
       
     const classes = useStyles(); // Imports prementioned CSS
     return (
-        <div className={classes.root} onClick={()=>{window.location="../../projects/"+proj_id.proj_id}}>
+        <div className={classes.root} onClick={()=>{clickProject()}}>
             <div>
                 {proj_id.proj_name}
             </div>
             <br/>
-            <span className={classes.column}>
-                Text1
-            </span>
-            <span className={classes.column}>
-                Text2
-            </span>
+            <div>
+                <div className={classes.column}>
+                    <ChevronLeftIcon onClick={(event) => {
+                        moveLeft();
+                        event.stopPropagation(); //Prevents div onClick from triggering
+                    }}/>
+                </div>
+                <div className={classes.column} style={{"text-align": "right"}}>
+                    <ChevronRightIcon onClick={(event) => {
+                        moveRight();
+                        event.stopPropagation(); //Prevents div onClick from triggering
+                        }}/>
+                </div>
+            </div>
         </div>
     ); 
 }
