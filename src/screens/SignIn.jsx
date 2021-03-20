@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     color: "#4C3B39",
-    height: "80%",
+    height: "90%",
   },
   logo: {
     margin: theme.spacing(1),
@@ -70,10 +70,10 @@ function SignIn() {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7}>
+      <Grid item xs={1} sm={4} md={7}>
         <WhatshotIcon className={classes.logoImage} />
       </Grid>
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={11} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <WhatshotIcon className={classes.logo} />
           <Typography component="h1" variant="h4">
