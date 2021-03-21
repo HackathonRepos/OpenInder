@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,9 +15,6 @@ import Fab from "@material-ui/core/Fab";
 import MenuIcon from "@material-ui/icons/Menu";
 import SideDrawer from "../components/SideDrawer";
 
-
-
-
 function Find() {
   const classes = useStyles();
   const [increment, setIncrement] = useState(0);
@@ -27,14 +24,15 @@ function Find() {
     setDrawerOpen(false);
   };
   useEffect(() => {
-    let arr = []
+    let arr = [];
     const docRef = Firebase.firestore().collection("projects");
     docRef.get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {arr.push(doc.data())});
+      querySnapshot.forEach((doc) => {
+        arr.push(doc.data());
+      });
     });
     setProjects(arr);
-  }, [])
-  console.log(projects)
+  }, []);
   return (
     <div className={classes.screen}>
       <Fab
@@ -50,49 +48,55 @@ function Find() {
           <IconButton onClick={() => setIncrement(increment + 1)}>
             <ArrowBackIcon className={classes.previous} />
           </IconButton>
-          <Fade bottom spy={increment}>
-            <div className={classes.repoCard}>
-              <div className={classes.repoCardHeader}>
-                <Typography variant="h3">Repository Name</Typography>
-                <BookmarkIcon className={classes.bookmark} />
+          {projects.length === 0 ? (
+            <h1>Loading</h1>
+          ) : (
+            <Fade bottom spy={increment}>
+              <div className={classes.repoCard}>
+                <div className={classes.repoCardHeader}>
+                  <Typography variant="h3">Repository Name</Typography>
+                  <BookmarkIcon className={classes.bookmark} />
+                </div>
+                <div className={classes.factContent}>
+                  <div>
+                    <Typography className={classes.description}>
+                      This is a description of the repository stating what it
+                      does and it is very cool since this hackathon is so cool
+                      and I"m trying to make this a decent long description to
+                      make sure I can format this safely.
+                    </Typography>
+                  </div>
+                  <div className={classes.stats}>
+                    <Typography className={classes.item}>
+                      Author: John Doe
+                    </Typography>
+                    <Typography className={classes.item}>
+                      Language: Javascript
+                    </Typography>
+                    <Typography className={classes.item}>
+                      Forks: 123432
+                    </Typography>
+                    <Divider style={{ position: "absolute" }} />
+                  </div>
+                  <div className={classes.bottomFacts}>
+                    <Typography className={classes.item}>
+                      Issues: 213
+                    </Typography>
+                    <Typography className={classes.item}>
+                      Watchers: 3123
+                    </Typography>
+                    <Typography className={classes.item}>
+                      Subscribers: 312312
+                    </Typography>
+                    <Divider />
+                  </div>
+                </div>
+                <Typography className={classes.repoLink}>
+                  Check It out Here !
+                </Typography>
               </div>
-              <div className={classes.factContent}>
-                <div>
-                  <Typography className={classes.description}>
-                    This is a description of the repository stating what it does
-                    and it is very cool since this hackathon is so cool and I"m
-                    trying to make this a decent long description to make sure I
-                    can format this safely.
-                  </Typography>
-                </div>
-                <div className={classes.stats}>
-                  <Typography className={classes.item}>
-                    Author: John Doe
-                  </Typography>
-                  <Typography className={classes.item}>
-                    Language: Javascript
-                  </Typography>
-                  <Typography className={classes.item}>
-                    Forks: 123432
-                  </Typography>
-                  <Divider style={{ position: "absolute" }} />
-                </div>
-                <div className={classes.bottomFacts}>
-                  <Typography className={classes.item}>Issues: 213</Typography>
-                  <Typography className={classes.item}>
-                    Watchers: 3123
-                  </Typography>
-                  <Typography className={classes.item}>
-                    Subscribers: 312312
-                  </Typography>
-                  <Divider />
-                </div>
-              </div>
-              <Typography className={classes.repoLink}>
-                Check It out Here !
-              </Typography>
-            </div>
-          </Fade>
+            </Fade>
+          )}
           <IconButton onClick={() => setIncrement(increment + 1)}>
             <ArrowForwardIcon className={classes.next} />
           </IconButton>
