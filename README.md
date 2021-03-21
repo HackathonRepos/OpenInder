@@ -1,3 +1,6 @@
+About Us
+========
+
 It's no big surprise that there's a significant disparity between learning and applying concepts, yet this disparity is arguably the widest in the computer science industry. As future computer-science majors, we have heard about the importance of knowing data structures and algorithms, but not that of debugging code. While taking computer science classes, we learned about avoiding errors, but not about diving into large codebases to pinpoint the source of an error. We've created our own standalone apps (200-500 lines each), but when we undertook summer internships, we were going through thousands of lines - a scary experience, to say the least!
 
 And this, to some extent, is the reason that many recent college graduates deal with imposter syndrome and burnout - their jobs often ask them to exhibit skills that aren't tested on in the interview, and thus these skills often are neglected. However, there's a caveat: creating code at an industrial level isn't easy. Even developing a similar app consumes a lot of time and energy - precious resources that most college-students already lack. 
