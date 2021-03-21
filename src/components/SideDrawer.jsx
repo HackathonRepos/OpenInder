@@ -7,7 +7,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import LockIcon from "@material-ui/icons/Lock";
 import HomeIcon from "@material-ui/icons/Home";
-import CreateIcon from "@material-ui/icons/Create";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 
@@ -44,17 +43,17 @@ function SideDrawer({ isDrawerOpen, toggleDrawer }) {
           toggleDrawer={toggleDrawer}
         />
         <ListSection
+          listText={"FIND A DREAM REPO"}
+          ListIcon={PlayArrowIcon}
+          linkText="/authenticated/find"
+          toggleDrawer={toggleDrawer}
+        />
+        <ListSection
           listText={"SIGN OUT"}
           ListIcon={LockIcon}
           linkText="/signin"
           toggleDrawer={toggleDrawer}
           logOut={logOut}
-        />
-        <ListSection
-          listText={"FIND A DREAM REPO"}
-          ListIcon={PlayArrowIcon}
-          linkText="/authenticated/find"
-          toggleDrawer={toggleDrawer}
         />
         <ListSection
           listText={"Check this project out on Github!"}
