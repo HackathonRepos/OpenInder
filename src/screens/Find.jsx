@@ -16,36 +16,8 @@ import SortIcon from "@material-ui/icons/Sort";
 import MenuIcon from "@material-ui/icons/Menu";
 
 import SideDrawer from "../components/SideDrawer";
-const GithubSearcher = require("github-search-api");
-
-// function gen_projects() {
-//   github.searchRepos(params, function(data) {
-//     console.log(data)
-//     console.log(data.items)
-//     console.log(data.items.length);
-//     return data.items;
-//   });  
-//   return [];
-// }
-console.log("Outside!")
-
-const params = {
-  "term": ["open-source", "open source"],
-};
-const github = new GithubSearcher({username: process.env.GITHUB_USERNAME, password: process.env.GITHUB_PASSWORD});  
 
 function Find() {
-
-  var pointer = 0;
-  var projects = 0;
-  useEffect(() => {
-    async() => {
-      await github.searchRepos(params, function(data) {
-        projects = data.items;
-      });
-    };
-  }, []);
-
   const classes = useStyles();
   const [increment, setIncrement] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
