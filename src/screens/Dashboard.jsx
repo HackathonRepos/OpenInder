@@ -38,7 +38,7 @@ function Copyright() {
 
 const drawerWidth = 240;
 
-// Use SAAS to set up inline CSS for dashboard
+// Use SASS to set up inline CSS for dashboard
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",

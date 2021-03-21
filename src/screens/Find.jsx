@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -7,44 +7,70 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import ClearIcon from "@material-ui/icons/Clear";
+import IconButton from "@material-ui/core/IconButton";
+import Fade from "react-reveal/Fade";
+import Divider from "@material-ui/core/Divider";
 
 function Find() {
   const classes = useStyles();
+  const [increment, setIncrement] = useState(0);
   return (
     <div className={classes.screen}>
       <div className={classes.mainContent}>
         <div className={classes.swipe}>
-          <div>
+          <IconButton onClick={() => setIncrement(increment + 1)}>
             <ArrowBackIcon className={classes.previous} />
-          </div>
-          <div className={classes.repoCard}>
-            <div className={classes.repoCardHeader}>
-              <Typography variant="h3" style={{ display: "inline-flex" }}>
-                Repository Name
+          </IconButton>
+          <Fade spy={increment}>
+            <div className={classes.repoCard}>
+              <div className={classes.repoCardHeader}>
+                <Typography variant="h3">Repository Name</Typography>
+                <BookmarkIcon className={classes.bookmark} />
+              </div>
+              <div className={classes.factContent}>
+                <div>
+                  <Typography className={classes.description}>
+                    This is a description of the repository stating what it does
+                    and it is very cool since this hackathon is so cool and I'm
+                    trying to make this a decent long description to make sure I
+                    can format this safely.
+                  </Typography>
+                </div>
+                <div className={classes.stats}>
+                  <Typography className={classes.item}>
+                    Author: John Doe
+                  </Typography>
+                  <Typography className={classes.item}>
+                    Language: Javascript
+                  </Typography>
+                  <Typography className={classes.item}>
+                    Forks: 123432
+                  </Typography>
+                  <Divider style={{ position: "absolute" }} />
+                </div>
+                <div className={classes.bottomFacts}>
+                  <Typography className={classes.item}>Issues: 213</Typography>
+                  <Typography className={classes.item}>
+                    Watchers: 3123
+                  </Typography>
+                  <Typography className={classes.item}>
+                    Subscribers: 312312
+                  </Typography>
+                  <Divider />
+                </div>
+              </div>
+              <Typography className={classes.repoLink}>
+                Check It out Here !
               </Typography>
-              <BookmarkIcon />
             </div>
-            <Typography>
-              This is a description of the repository stating what it does and
-              it is very cooll since this hackathon is so cool and I'm trying to
-              make this a decent long description to make sure I can format this
-              safely.
-            </Typography>
-            <Typography>Author: Author Name</Typography>
-            <Typography>Language: Javascript</Typography>
-            <Typography>Forks: Number of Forks</Typography>
-            <Typography>Issues: Number of Issues</Typography>
-            <Typography>Watchers: Number of Watchers</Typography>
-            <Typography>SUbscribers: Number of Subscribers</Typography>
-            <Typography>Check It out Here</Typography>
-          </div>
-          <div>
+          </Fade>
+          <IconButton onClick={() => setIncrement(increment + 1)}>
             <ArrowForwardIcon className={classes.next} />
-          </div>
+          </IconButton>
         </div>
-        <div>
+        <IconButton onClick={() => setIncrement(increment + 1)}>
           <ClearIcon className={classes.block} />
-        </div>
+        </IconButton>
       </div>
     </div>
   );
@@ -58,12 +84,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     flexDirection: "column",
     height: "100vh",
+    color: "#4C3B39",
   },
   swipe: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    height: "80%",
+    height: "90%",
     width: "100%",
   },
   previous: {
@@ -72,20 +99,78 @@ const useStyles = makeStyles((theme) => ({
     height: "75px",
   },
   repoCard: {
+    position: "relative",
     backgroundColor: "#F9F8F8",
     borderRadius: "10px",
-    height: "100%",
+    height: "80%",
     width: "100%",
     boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
     display: "flex",
     flexDirection: "column",
+    marginTop: "20px",
+    borderBottom: "10px solid #a95962",
   },
+  repoCardHeader: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: "20px",
+    paddingBottom: "15px",
+    borderTopLeftRadius: "10px",
+    borderTopRightRadius: "10px",
+    backgroundColor: "#a95962",
+    color: "#F9F8F8",
+  },
+  factContent: {
+    display: "flex",
+    alignItems: "center",
+    height: "100%",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+  },
+  bookmark: {
+    position: "absolute",
+    top: "0",
+    right: "0",
+    width: "35px",
+    height: "35px",
+  },
+  description: {
+    justifyContent: "center",
+    display: "flex",
+    marginTop: "25px",
+    marginBottom: "25px",
+    paddingLeft: "30px",
+    paddingRight: "30px",
+  },
+  item: {
+    fontSize: "30px",
+    flex: "1",
+    display: "flex",
+    justifyContent: "center",
+  },
+  stats: {
+    display: "flex",
+    // justifyContent: "space-around",
+    marginTop: "25px",
+    marginBottom: "25px",
+    width: "100%",
+  },
+  bottomFacts: {
+    display: "flex",
+    // justifyContent: "space-evenly",
+    paddingLeft: "30px",
+    marginTop: "25px",
+    marginBottom: "25px",
+    width: "100%",
+  },
+  repoLink: { position: "absolute", top: "95%", left: "2%" },
   next: {
     color: "#F9F8F8",
     width: "75px",
     height: "75px",
   },
-  block: { color: "#a95962", width: "50px", height: "50px", marginTop: "30px" },
+  block: { color: "#a95962", width: "50px", height: "50px" },
 }));
 
 export default Find;
