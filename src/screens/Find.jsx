@@ -11,17 +11,38 @@ import IconButton from "@material-ui/core/IconButton";
 import Fade from "react-reveal/Fade";
 import Divider from "@material-ui/core/Divider";
 
+import Fab from "@material-ui/core/Fab";
+import SortIcon from "@material-ui/icons/Sort";
+import MenuIcon from "@material-ui/icons/Menu";
+
+import SideDrawer from "../components/SideDrawer";
+
 function Find() {
   const classes = useStyles();
   const [increment, setIncrement] = useState(0);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const toggleDrawer = () => {
+    setDrawerOpen(false);
+  };
   return (
     <div className={classes.screen}>
+      <Fab color="primary" className={classes.sortIcon}>
+        <SortIcon />
+      </Fab>
+      <Fab
+        color="secondary"
+        className={classes.menuIcon}
+        onClick={() => setDrawerOpen(!drawerOpen)}
+      >
+        <MenuIcon />
+      </Fab>
+      <SideDrawer isDrawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />
       <div className={classes.mainContent}>
         <div className={classes.swipe}>
           <IconButton onClick={() => setIncrement(increment + 1)}>
             <ArrowBackIcon className={classes.previous} />
           </IconButton>
-          <Fade spy={increment}>
+          <Fade bottom spy={increment}>
             <div className={classes.repoCard}>
               <div className={classes.repoCardHeader}>
                 <Typography variant="h3">Repository Name</Typography>
@@ -78,6 +99,8 @@ function Find() {
 
 const useStyles = makeStyles((theme) => ({
   screen: { backgroundColor: "#4C3B39", height: "100vh" },
+  sortIcon: { position: "absolute", top: "2%", left: "95%" },
+  menuIcon: { position: "absolute", top: "2%", left: "1%" },
   mainContent: {
     display: "flex",
     alignItems: "center",
