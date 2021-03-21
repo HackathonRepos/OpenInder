@@ -34,7 +34,7 @@ function Copyright() {
 
 const drawerWidth = 240;
 
-// Use SAAS to set up inline CSS for dashboard 
+// Use SASS to set up inline CSS for dashboard
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -118,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
 function Dashboard() {
   const classes = useStyles(); // Imports prementioned CSS
   const [open, setOpen] = React.useState(true);
-  
+
   // Handlers for menu drawer
   const handleDrawerOpen = () => {
     setOpen(true);
