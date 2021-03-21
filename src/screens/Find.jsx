@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -12,7 +12,6 @@ import Fade from "react-reveal/Fade";
 import Divider from "@material-ui/core/Divider";
 import Firebase from "firebase";
 import Fab from "@material-ui/core/Fab";
-import SortIcon from "@material-ui/icons/Sort";
 import MenuIcon from "@material-ui/icons/Menu";
 import SideDrawer from "../components/SideDrawer";
 
@@ -20,7 +19,6 @@ import SideDrawer from "../components/SideDrawer";
 
 
 function Find() {
-
   const classes = useStyles();
   const [increment, setIncrement] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -39,9 +37,6 @@ function Find() {
   console.log(projects)
   return (
     <div className={classes.screen}>
-      <Fab color="primary" className={classes.sortIcon}>
-        <SortIcon />
-      </Fab>
       <Fab
         color="secondary"
         className={classes.menuIcon}
