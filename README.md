@@ -1,9 +1,6 @@
-OpenInder
-=========
 ![Alt text](/src/images/logo.png)
 
-About Us
---------
+# About Us #
 
 It's no big surprise that there's a significant disparity between learning and applying concepts, yet this disparity is arguably the widest in the computer science industry. As future computer-science majors, we have heard about the importance of knowing data structures and algorithms, but not that of debugging code. While taking computer science classes, we learned about avoiding errors, but not about diving into large codebases to pinpoint the source of an error. We've created our own standalone apps (200-500 lines each), but when we undertook summer internships, we were going through thousands of lines - a scary experience, to say the least!
 
