@@ -100,7 +100,7 @@ function Find() {
                   </div>
                 </div>
                 <Typography className={classes.repoLink}>
-                  Check it out <Link color="#4C3B39" href={projects[pointer].url}>Here </Link>
+                  Check it out <Link color="#4C3B39" href={projects[pointer].url}>here </Link>!
                 </Typography>
               </div>
             </Fade>
