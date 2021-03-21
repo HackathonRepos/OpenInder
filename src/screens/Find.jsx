@@ -11,13 +11,11 @@ import IconButton from "@material-ui/core/IconButton";
 import Fade from "react-reveal/Fade";
 import Divider from "@material-ui/core/Divider";
 
-<<<<<<< Updated upstream
 import Fab from "@material-ui/core/Fab";
 import SortIcon from "@material-ui/icons/Sort";
 import MenuIcon from "@material-ui/icons/Menu";
 
 import SideDrawer from "../components/SideDrawer";
-=======
 const GithubSearcher = require("github-search-api");
 
 // function gen_projects() {
@@ -35,7 +33,6 @@ const params = {
   "term": ["open-source", "open source"],
 };
 const github = new GithubSearcher({username: process.env.GITHUB_USERNAME, password: process.env.GITHUB_PASSWORD});  
->>>>>>> Stashed changes
 
 function Find() {
 
