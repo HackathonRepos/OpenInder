@@ -10,48 +10,33 @@ import ClearIcon from "@material-ui/icons/Clear";
 import IconButton from "@material-ui/core/IconButton";
 import Fade from "react-reveal/Fade";
 import Divider from "@material-ui/core/Divider";
-
+import Firebase from "firebase";
 import Fab from "@material-ui/core/Fab";
 import SortIcon from "@material-ui/icons/Sort";
 import MenuIcon from "@material-ui/icons/Menu";
-
 import SideDrawer from "../components/SideDrawer";
-const GithubSearcher = require("github-search-api");
 
-// function gen_projects() {
-//   github.searchRepos(params, function(data) {
-//     console.log(data)
-//     console.log(data.items)
-//     console.log(data.items.length);
-//     return data.items;
-//   });  
-//   return [];
-// }
-console.log("Outside!")
 
-const params = {
-  "term": ["open-source", "open source"],
-};
-const github = new GithubSearcher({username: process.env.GITHUB_USERNAME, password: process.env.GITHUB_PASSWORD});  
+
 
 function Find() {
-
-  var pointer = 0;
-  var projects = 0;
-  useEffect(() => {
-    async() => {
-      await github.searchRepos(params, function(data) {
-        projects = data.items;
-      });
-    };
-  }, []);
 
   const classes = useStyles();
   const [increment, setIncrement] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [projects, setProjects] = useState([]);
   const toggleDrawer = () => {
     setDrawerOpen(false);
   };
+  useEffect(() => {
+    let arr = []
+    const docRef = Firebase.firestore().collection("projects");
+    docRef.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {arr.push(doc.data())});
+    });
+    setProjects(arr);
+  }, [])
+  console.log(projects)
   return (
     <div className={classes.screen}>
       <Fab color="primary" className={classes.sortIcon}>
