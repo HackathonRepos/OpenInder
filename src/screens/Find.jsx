@@ -10,19 +10,31 @@ import ClearIcon from "@material-ui/icons/Clear";
 import IconButton from "@material-ui/core/IconButton";
 import Fade from "react-reveal/Fade";
 import Divider from "@material-ui/core/Divider";
-
+import Firebase from "firebase";
 import Fab from "@material-ui/core/Fab";
 import MenuIcon from "@material-ui/icons/Menu";
-
 import SideDrawer from "../components/SideDrawer";
+
+
+
 
 function Find() {
   const classes = useStyles();
   const [increment, setIncrement] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [projects, setProjects] = useState([]);
   const toggleDrawer = () => {
     setDrawerOpen(false);
   };
+  useEffect(() => {
+    let arr = []
+    const docRef = Firebase.firestore().collection("projects");
+    docRef.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {arr.push(doc.data())});
+    });
+    setProjects(arr);
+  }, [])
+  console.log(projects)
   return (
     <div className={classes.screen}>
       <Fab
