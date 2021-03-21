@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import clsx from "clsx";
 
 import Project from "../components/Project";
-import firebase from "firebase";
 
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -49,7 +48,6 @@ function Dashboard() {
             <Grid item xs={12} md={4} lg={4}>
               <Paper className={fixedHeightPaper}>
                 <header className={classes.header}>
-                  {" "}
                   Projects I'm Working On{" "}
                 </header>
                 <Project
@@ -118,6 +116,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
+  menuIcon: { position: "absolute", top: "2%", left: "1%" },
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
