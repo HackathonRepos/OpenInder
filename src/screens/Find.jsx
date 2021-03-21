@@ -12,12 +12,15 @@ import Fade from "react-reveal/Fade";
 import Divider from "@material-ui/core/Divider";
 import Firebase from "firebase";
 import Fab from "@material-ui/core/Fab";
+import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import SideDrawer from "../components/SideDrawer";
+import { SettingsInputAntennaTwoTone } from "@material-ui/icons";
 
 function Find() {
   const classes = useStyles();
   const [increment, setIncrement] = useState(0);
+  const [pointer, setPointer] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [projects, setProjects] = useState([]);
   const toggleDrawer = () => {
@@ -45,7 +48,15 @@ function Find() {
       <SideDrawer isDrawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />
       <div className={classes.mainContent}>
         <div className={classes.swipe}>
-          <IconButton onClick={() => setIncrement(increment + 1)}>
+          <IconButton onClick={() => {
+            setIncrement(increment + 1);
+            if (pointer > 0) {
+              setPointer(pointer - 1)
+            } else {
+              setPointer(projects.length - 1)
+            }
+              
+          }}>
             <ArrowBackIcon className={classes.previous} />
           </IconButton>
           {projects.length === 0 ? (
@@ -54,54 +65,65 @@ function Find() {
             <Fade bottom spy={increment}>
               <div className={classes.repoCard}>
                 <div className={classes.repoCardHeader}>
-                  <Typography variant="h3">Repository Name</Typography>
+                  <Typography variant="h3">{projects[pointer].name}</Typography>
                   <BookmarkIcon className={classes.bookmark} />
                 </div>
                 <div className={classes.factContent}>
                   <div>
                     <Typography className={classes.description}>
-                      This is a description of the repository stating what it
-                      does and it is very cool since this hackathon is so cool
-                      and I"m trying to make this a decent long description to
-                      make sure I can format this safely.
+                      {projects[pointer].description}
                     </Typography>
                   </div>
                   <div className={classes.stats}>
                     <Typography className={classes.item}>
-                      Author: John Doe
+                      Author: {projects[pointer].creator}
                     </Typography>
                     <Typography className={classes.item}>
-                      Language: Javascript
+                      Language: {projects[pointer].language}
                     </Typography>
                     <Typography className={classes.item}>
-                      Forks: 123432
+                      Forks: {projects[pointer].forks}
                     </Typography>
                     <Divider style={{ position: "absolute" }} />
                   </div>
                   <div className={classes.bottomFacts}>
                     <Typography className={classes.item}>
-                      Issues: 213
+                      Issues: {projects[pointer].issues}
                     </Typography>
                     <Typography className={classes.item}>
-                      Watchers: 3123
+                      Watchers: {projects[pointer].watchers}
                     </Typography>
                     <Typography className={classes.item}>
-                      Subscribers: 312312
+                      Subscribers: {projects[pointer].subcscribers}
                     </Typography>
                     <Divider />
                   </div>
                 </div>
                 <Typography className={classes.repoLink}>
-                  Check It out Here !
+                  Check it out <Link color="#4C3B39" href={projects[pointer].url}>Here </Link>
                 </Typography>
               </div>
             </Fade>
           )}
-          <IconButton onClick={() => setIncrement(increment + 1)}>
+          <IconButton onClick={() => {
+            setIncrement(increment + 1);
+            if (pointer == (projects.length-1)) {
+              setPointer(0)
+            } else {
+              setPointer(pointer + 1)
+            };
+            }}>
             <ArrowForwardIcon className={classes.next} />
           </IconButton>
         </div>
-        <IconButton onClick={() => setIncrement(increment + 1)}>
+        <IconButton onClick={() => {
+            setIncrement(increment + 1);
+            if (pointer == (projects.length-1)) {
+              setPointer(0)
+            } else {
+              setPointer(pointer + 1)
+            };
+            }}>
           <ClearIcon className={classes.block} />
         </IconButton>
       </div>
