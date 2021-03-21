@@ -12,38 +12,19 @@ import Fade from "react-reveal/Fade";
 import Divider from "@material-ui/core/Divider";
 
 import Fab from "@material-ui/core/Fab";
-import SortIcon from "@material-ui/icons/Sort";
 import MenuIcon from "@material-ui/icons/Menu";
 
 import SideDrawer from "../components/SideDrawer";
-
-import List from "@material-ui/core/List";
-import Drawer from "@material-ui/core/Drawer";
-import Slider from "react-rangeslider";
-import "react-rangeslider/lib/index.css";
 
 function Find() {
   const classes = useStyles();
   const [increment, setIncrement] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [sortDrawerOpen, setSortDrawerOpen] = useState(false);
-  const [stars, setStars] = useState(0);
-  const [forks, setForks] = useState(0);
   const toggleDrawer = () => {
     setDrawerOpen(false);
   };
-  const toggleSortDrawer = () => {
-    setSortDrawerOpen(false);
-  };
   return (
     <div className={classes.screen}>
-      <Fab
-        color="primary"
-        className={classes.sortIcon}
-        onClick={() => setSortDrawerOpen(!sortDrawerOpen)}
-      >
-        <SortIcon />
-      </Fab>
       <Fab
         color="secondary"
         className={classes.menuIcon}
@@ -52,37 +33,6 @@ function Find() {
         <MenuIcon />
       </Fab>
       <SideDrawer isDrawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />
-      <Drawer
-        className={classes.drawer}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor="right"
-        open={sortDrawerOpen}
-        onClose={toggleSortDrawer}
-      >
-        <div className={classes.toolbar} />
-        <List>
-          <h1>Number of Stars:</h1>
-          <Slider
-            min={0}
-            max={100000}
-            value={stars}
-            onChange={(value) => setStars(value)}
-            onChangeComplete={() => console.log("completed stars drag")}
-          />
-          <div className="value">{stars}</div>
-          <h1>Number of Forks:</h1>
-          <Slider
-            min={0}
-            max={100000}
-            value={forks}
-            onChange={(value) => setForks(value)}
-            onChangeComplete={() => console.log("completed forks drag")}
-          />
-          <div className="value">{forks}</div>
-        </List>
-      </Drawer>
       <div className={classes.mainContent}>
         <div className={classes.swipe}>
           <IconButton onClick={() => setIncrement(increment + 1)}>
