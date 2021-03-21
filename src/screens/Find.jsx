@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import ArrowKeysReact from 'arrow-keys-react';
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import ClearIcon from "@material-ui/icons/Clear";
 import IconButton from "@material-ui/core/IconButton";
@@ -18,11 +19,13 @@ import SideDrawer from "../components/SideDrawer";
 import { SettingsInputAntennaTwoTone } from "@material-ui/icons";
 
 function Find() {
+
   const classes = useStyles();
   const [increment, setIncrement] = useState(0);
   const [pointer, setPointer] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState([]);  
+  
   const toggleDrawer = () => {
     setDrawerOpen(false);
   };
@@ -36,8 +39,36 @@ function Find() {
     });
     setProjects(arr);
   }, []);
+
+  ArrowKeysReact.config({
+    left: () => {
+      setIncrement(increment + 1);
+      if (pointer > 0) {
+        setPointer(pointer - 1)
+      } else {
+        setPointer(projects.length - 1)
+      }
+    },
+    right: () => {
+      setIncrement(increment + 1);
+      if (pointer == (projects.length-1)) {
+        setPointer(0);
+      } else {
+        setPointer(pointer + 1)
+      };
+    },
+    down: () => {
+      setIncrement(increment + 1);
+      if (pointer == (projects.length-1)) {
+        setPointer(0);
+      } else {
+        setPointer(pointer + 1)
+      };
+    }
+  });
+
   return (
-    <div className={classes.screen}>
+    <div {...ArrowKeysReact.events} className={classes.screen}>
       <Fab
         color="secondary"
         className={classes.menuIcon}
@@ -60,7 +91,11 @@ function Find() {
             <ArrowBackIcon className={classes.previous} />
           </IconButton>
           {projects.length === 0 ? (
-            <h1>Loading</h1>
+            <div {...ArrowKeysReact.events} style ={{"color":"white", "text-align":"center"}}> 
+              <h1>Welcome to OpenInder!</h1>
+              <h3>Click a button to get started, and use the arrow keys afterwards. We hope you enjoy your time here!</h3>
+              <h3> -The Devs </h3>
+            </div>
           ) : (
             <Fade bottom spy={increment}>
               <div className={classes.repoCard}>
