@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,13 +11,44 @@ import IconButton from "@material-ui/core/IconButton";
 import Fade from "react-reveal/Fade";
 import Divider from "@material-ui/core/Divider";
 
+<<<<<<< Updated upstream
 import Fab from "@material-ui/core/Fab";
 import SortIcon from "@material-ui/icons/Sort";
 import MenuIcon from "@material-ui/icons/Menu";
 
 import SideDrawer from "../components/SideDrawer";
+=======
+const GithubSearcher = require("github-search-api");
+
+// function gen_projects() {
+//   github.searchRepos(params, function(data) {
+//     console.log(data)
+//     console.log(data.items)
+//     console.log(data.items.length);
+//     return data.items;
+//   });  
+//   return [];
+// }
+console.log("Outside!")
+
+const params = {
+  "term": ["open-source", "open source"],
+};
+const github = new GithubSearcher({username: process.env.GITHUB_USERNAME, password: process.env.GITHUB_PASSWORD});  
+>>>>>>> Stashed changes
 
 function Find() {
+
+  var pointer = 0;
+  var projects = 0;
+  useEffect(() => {
+    async() => {
+      await github.searchRepos(params, function(data) {
+        projects = data.items;
+      });
+    };
+  }, []);
+
   const classes = useStyles();
   const [increment, setIncrement] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -52,7 +83,7 @@ function Find() {
                 <div>
                   <Typography className={classes.description}>
                     This is a description of the repository stating what it does
-                    and it is very cool since this hackathon is so cool and I'm
+                    and it is very cool since this hackathon is so cool and I"m
                     trying to make this a decent long description to make sure I
                     can format this safely.
                   </Typography>

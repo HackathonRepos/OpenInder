@@ -15,7 +15,7 @@ function App() {
   // listens to the state changes and determines if there is a logged in user
   const isLoggedIn = () => {
     firebase.auth().onAuthStateChanged(function (user) {
-      console.log(user);
+      // console.log(user);
       return user ? true : false;
     });
   };
