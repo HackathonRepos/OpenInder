@@ -44,17 +44,17 @@ function SideDrawer({ isDrawerOpen, toggleDrawer }) {
           toggleDrawer={toggleDrawer}
         />
         <ListSection
+          listText={"FIND A DREAM REPO"}
+          ListIcon={PlayArrowIcon}
+          linkText="/authenticated/find"
+          toggleDrawer={toggleDrawer}
+        />
+        <ListSection
           listText={"SIGN OUT"}
           ListIcon={LockIcon}
           linkText="/signin"
           toggleDrawer={toggleDrawer}
           logOut={logOut}
-        />
-        <ListSection
-          listText={"FIND A DREAM REPO"}
-          ListIcon={PlayArrowIcon}
-          linkText="/authenticated/find"
-          toggleDrawer={toggleDrawer}
         />
         <ListSection
           listText={"Check this project out on Github!"}
