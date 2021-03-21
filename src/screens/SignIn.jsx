@@ -113,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
   logoImage: {
     color: "#F9F8F8",
     width: "100%",
-    height: "80%",
+    height: "100vh",
     marginTop: "50px",
   },
   paper: {
