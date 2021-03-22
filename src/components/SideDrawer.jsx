@@ -37,12 +37,6 @@ function SideDrawer({ isDrawerOpen, toggleDrawer }) {
           toggleDrawer={toggleDrawer}
         />
         <ListSection
-          listText={"DASHBOARD"}
-          ListIcon={HomeIcon}
-          linkText={"/authenticated/dashboard"}
-          toggleDrawer={toggleDrawer}
-        />
-        <ListSection
           listText={"FIND A DREAM REPO"}
           ListIcon={PlayArrowIcon}
           linkText="/authenticated/find"

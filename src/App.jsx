@@ -6,7 +6,6 @@ import "./styles/App.css";
 import Homepage from "./screens/Homepage";
 import SignIn from "./screens/SignIn";
 import SignUp from "./screens/SignUp";
-import Dashboard from "./screens/Dashboard";
 import Find from "./screens/Find";
 
 import firebase from "firebase";
@@ -26,12 +25,12 @@ function App() {
       <Route path="/" component={Homepage} exact />
       <Route path="/signin" component={SignIn} exact />
       <Route path="/signup" component={SignUp} exact />
-      <Route
+      {/* <Route
         path={"/authenticated/dashboard"}
         // Check if the path is authenticated (i.e. user logged in), else redirect them to signin page
         render={() => (isLoggedIn ? <Dashboard /> : <Redirect to="/signin" />)}
         exact
-      />
+      /> */}
       <Route
         path={"/authenticated/find"}
         // Check if the path is authenticated (i.e. user logged in), else redirect them to signin page
